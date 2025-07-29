@@ -18,3 +18,9 @@ export type {
   HealthLogValidationResult,
   EncryptedHealthLog
 } from './healthLog';
+
+export type {
+  RootStackParamList,
+  AuthStackParamList,
+  MainStackParamList
+} from './navigation';

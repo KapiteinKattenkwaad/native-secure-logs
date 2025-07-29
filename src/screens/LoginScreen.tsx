@@ -9,14 +9,14 @@ import {
   Platform,
   ScrollView,
 } from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useAuth } from '../contexts/AuthContext';
 import { LoginCredentials } from '../types/auth';
+import { AuthStackParamList } from '../types/navigation';
 
-interface LoginScreenProps {
-  onNavigateToRegister: () => void;
-}
+type LoginScreenProps = NativeStackScreenProps<AuthStackParamList, 'Login'>;
 
-export function LoginScreen({ onNavigateToRegister }: LoginScreenProps) {
+export function LoginScreen({ navigation }: LoginScreenProps) {
   const { state, login, clearError } = useAuth();
   const [credentials, setCredentials] = useState<LoginCredentials>({
     email: '',
@@ -55,6 +55,7 @@ export function LoginScreen({ onNavigateToRegister }: LoginScreenProps) {
 
     try {
       await login(credentials);
+      // Navigation is handled by the root navigator based on auth state
     } catch (error) {
       // Error is handled by the AuthContext
       console.error('Login error:', error);
@@ -163,7 +164,7 @@ export function LoginScreen({ onNavigateToRegister }: LoginScreenProps) {
           <View className="flex-row justify-center">
             <Text className="text-gray-600">Don't have an account? </Text>
             <TouchableOpacity 
-              onPress={onNavigateToRegister}
+              onPress={() => navigation.navigate('Register')}
               disabled={state.isLoading}
             >
               <Text className="text-blue-600 font-semibold">Sign Up</Text>

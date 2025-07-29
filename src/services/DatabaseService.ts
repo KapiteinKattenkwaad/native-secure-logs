@@ -194,7 +194,7 @@ export class DatabaseService {
         ORDER BY created_at DESC
       `, [userId]);
 
-      return logs;
+      return logs || [];
     } catch (error) {
       throw new Error(`Failed to get health logs: ${error}`);
     }
@@ -274,7 +274,7 @@ export class DatabaseService {
         ORDER BY created_at ASC
       `, [userId]);
 
-      return logs;
+      return logs || [];
     } catch (error) {
       throw new Error(`Failed to get unsynced health logs: ${error}`);
     }
