@@ -1,2 +1,3 @@
 // Export all screens from this directory
-export {};
+export { LoginScreen } from './LoginScreen';
+export { RegisterScreen } from './RegisterScreen';

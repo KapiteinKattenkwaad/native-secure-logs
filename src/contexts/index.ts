@@ -1,2 +1,2 @@
 // Export all contexts from this directory
-export {};
+export { AuthProvider, useAuth } from './AuthContext';
